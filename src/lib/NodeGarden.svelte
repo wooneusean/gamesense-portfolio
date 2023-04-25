@@ -5,11 +5,15 @@
   let canvas: HTMLCanvasElement;
   let nodeGarden: NodeGardenCanvasAnimation;
 
+  const resizeWindow = () => {
+    nodeGarden.ctx.canvas.width = window.innerWidth;
+    nodeGarden.ctx.canvas.height = window.innerHeight;
+  };
+
   onMount(() => {
     nodeGarden = new NodeGardenCanvasAnimation(canvas);
 
-    nodeGarden.ctx.canvas.width = window.innerWidth;
-    nodeGarden.ctx.canvas.height = window.innerHeight;
+    resizeWindow();
 
     nodeGarden.start();
 
@@ -23,9 +27,19 @@
       nodeGarden.updateMousePosition(ev);
     }
   };
+
+  const onWindowResize = (
+    e: UIEvent & {
+      currentTarget: EventTarget & Window;
+    }
+  ) => {
+    resizeWindow();
+  };
 </script>
 
 <canvas bind:this={canvas} />
+
+<svelte:window on:resize={onWindowResize} />
 
 <!-- on:mousemove={handleMouseMove} -->
 <style>

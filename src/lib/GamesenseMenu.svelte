@@ -93,15 +93,14 @@
     <div class="layout">
       <div class="tabs">
         {#each Object.keys(tabs) as tab}
-          <div
+          <button
             class="tab"
             class:active={activeTabKey == tab}
             on:click={() => handleTabChange(tab)}
             on:mousedown|stopPropagation={() => {}}
-            on:keypress={() => {}}
           >
             {tab}
-          </div>
+          </button>
         {/each}
       </div>
       <div class="page text-white">
@@ -135,10 +134,11 @@
       }
       // &.active:not(:first-child):not(:last-child) {
       &.active:not(:first-child) {
-        border-block: solid 1px #3a3a3a;
+        border-block: solid 1px #212121;
       }
       &.active:first-child {
-        border-bottom: solid 1px #3a3a3a;
+        border-top: solid 1px transparent;
+        border-bottom: solid 1px #212121;
       }
       // &.active:last-child {
       //   border-top: solid 1px #3a3a3a;
@@ -148,13 +148,17 @@
 
   .page {
     @extend .menu-bg;
-    border-left: solid 1px #3a3a3a;
+    border-left: solid 1px #212121;
+    position: relative;
   }
 
   .layout {
     height: calc(100% - 1px);
     display: grid;
     grid-template-columns: 120px 1fr;
+
+    // Makes whole thing scrollable
+    overflow-y: auto;
   }
 
   @media (max-width: 1200px) {
@@ -212,6 +216,8 @@
   }
 
   .menu-border {
+    display: grid;
+    grid-template-rows: 1px 1fr;
     position: absolute;
     top: 6px;
     left: 6px;
@@ -224,13 +230,10 @@
   .menu {
     position: relative;
     background-color: #0a0a0a;
-
     resize: both;
     overflow: auto;
     min-height: calc(125px * 5);
-
     transition: opacity 150ms ease-in-out;
-
     z-index: 20;
   }
 

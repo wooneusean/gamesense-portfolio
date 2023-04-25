@@ -20,16 +20,8 @@ export default class NodeGardenCanvasAnimation extends CanvasAnimation {
 
   start(): void {
     for (let i = this.points.length; i < this.nodeCount; i++) {
-      this.points.push(
-        new Point(
-          Math.random() * this.canvas.width,
-          Math.random() * this.canvas.height,
-          2,
-          '0, 255, 255',
-          { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 },
-          this.ctx
-        )
-      );
+      const location: Vector2 = { x: Math.random() * this.canvas.width, y: Math.random() * this.canvas.height };
+      this.points.push(new Point(location, 2, { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 }, this.ctx));
     }
 
     super.start();
@@ -41,10 +33,10 @@ export default class NodeGardenCanvasAnimation extends CanvasAnimation {
 
   update(deltaTime: number): void {
     this.points.forEach((point) => {
-      point.position(
-        modulo(point.x + this.horizontalSpeed * deltaTime * point.velocity.x, this.canvas.width),
-        modulo(point.y + this.verticalSpeed * deltaTime * point.velocity.y, this.canvas.height)
-      );
+      point.position({
+        x: modulo(point.location.x + this.horizontalSpeed * deltaTime * point.velocity.x, this.canvas.width),
+        y: modulo(point.location.y + this.verticalSpeed * deltaTime * point.velocity.y, this.canvas.height),
+      });
     });
   }
 
@@ -54,13 +46,13 @@ export default class NodeGardenCanvasAnimation extends CanvasAnimation {
 
       // draw lines to mouse position if close enough
       if (this.mousePosition) {
-        let distToMouse = Vector2.distanceTo(this.points[i], this.mousePosition);
+        let distToMouse = Vector2.distanceTo(this.points[i].location, this.mousePosition);
         if (distToMouse < this.maxInteractionDistance) {
           Point.drawLine(
-            this.points[i],
+            this.points[i].location,
             this.mousePosition,
             this.ctx,
-            `rgba(${this.points[i].color}, ${1 - distToMouse / this.maxInteractionDistance})`
+            `hsla(${this.points[i].getColor()}, ${1 - distToMouse / this.maxInteractionDistance})`
           );
         }
       }
@@ -69,12 +61,12 @@ export default class NodeGardenCanvasAnimation extends CanvasAnimation {
       for (let j = 0; j < this.points.length; j++) {
         if (i == j) continue;
 
-        const dist = Vector2.distanceTo(this.points[i], this.points[j]);
+        const dist = Vector2.distanceTo(this.points[i].location, this.points[j].location);
         if (dist > this.maxInteractionDistance) continue;
 
         this.points[i].drawLine(
           this.points[j],
-          `rgba(${this.points[i].color}, ${1 - dist / this.maxInteractionDistance})`
+          `hsla(${this.points[i].getColor()}, ${1 - dist / this.maxInteractionDistance})`
         );
       }
     }

@@ -4,27 +4,16 @@ import type Vector2 from './vector-2';
 export default class Point implements Drawable {
   static total: number = 0;
   i: number;
-  x: number;
-  y: number;
   thickness: number;
-  color: string;
   velocity: Vector2;
+  location: Vector2;
 
   ctx: CanvasRenderingContext2D;
   links: Point[] = [];
 
-  constructor(
-    x: number,
-    y: number,
-    thickness: number,
-    color: string,
-    velocity: Vector2,
-    ctx: CanvasRenderingContext2D
-  ) {
-    this.x = x;
-    this.y = y;
+  constructor(location: Vector2, thickness: number, velocity: Vector2, ctx: CanvasRenderingContext2D) {
+    this.location = location;
     this.thickness = thickness;
-    this.color = color;
     this.velocity = velocity;
     this.ctx = ctx;
     this.i = Point.total;
@@ -32,9 +21,8 @@ export default class Point implements Drawable {
     Point.total++;
   }
 
-  position(newX: number, newY: number) {
-    this.x = newX;
-    this.y = newY;
+  position(newPos: Vector2) {
+    this.location = newPos;
   }
 
   drawLine(to: Point, color = '#fff') {
@@ -42,8 +30,8 @@ export default class Point implements Drawable {
 
     this.ctx.save();
     this.ctx.strokeStyle = color;
-    this.ctx.moveTo(this.x, this.y);
-    this.ctx.lineTo(to.x, to.y);
+    this.ctx.moveTo(this.location.x, this.location.y);
+    this.ctx.lineTo(to.location.x, to.location.y);
     this.ctx.stroke();
     this.ctx.restore();
 
@@ -64,13 +52,19 @@ export default class Point implements Drawable {
     this.links.length = 0;
   }
 
+  getColor() {
+    let h = (this.location.x / this.ctx.canvas.width) * 360;
+
+    return `${h}, 100%, 50%`;
+  }
+
   draw(deltaTime: number): void {
     this.ctx.save();
 
-    this.ctx.fillStyle = `rgb(${this.color})`;
+    this.ctx.fillStyle = `hsl(${this.getColor()})`;
 
     this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.thickness, 0, Math.PI * 2);
+    this.ctx.arc(this.location.x, this.location.y, this.thickness, 0, Math.PI * 2);
     this.ctx.closePath();
 
     this.ctx.fill();

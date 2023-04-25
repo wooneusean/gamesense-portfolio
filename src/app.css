@@ -9,3 +9,26 @@ html,
   width: 100%;
   overflow: hidden;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #414141 #2d2d2d;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #414141;
+  border-radius: 20px;
+  border: 3px solid #414141;
+}
