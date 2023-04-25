@@ -7,7 +7,7 @@
   import MySkills from './pages/MySkills.svelte';
   import MyHobbies from './pages/MyHobbies.svelte';
 
-  let activeTabKey = '';
+  let activeTabKey = '👤';
   let menu: HTMLDivElement;
   let d = { w: 900, h: 800 };
   let m = {
@@ -66,8 +66,6 @@
   let tabs = { '👤': AboutMe, '🎓': MyEducation, '💼': MyExperiences, '🧰': MySkills, '🏂': MyHobbies };
 
   const handleTabChange = (newTabKey) => {
-    console.log('tab changed');
-
     activeTabKey = newTabKey;
   };
 </script>
@@ -153,7 +151,7 @@
   }
 
   .layout {
-    height: calc(100% - 1px);
+    height: 100%;
     display: grid;
     grid-template-columns: 120px 1fr;
 

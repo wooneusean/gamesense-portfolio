@@ -1,34 +1,32 @@
 <script lang="ts">
-  export let columnTitles = [];
+  export let displayType: 'row' | 'column' = 'column';
 </script>
 
-<div class="page-content">
-  <div class="page-column" title="Presets" />
-  <div class="page-column" title="Lua" />
+<div
+  {...$$restProps}
+  class="page-content"
+  class:row-display={displayType == 'row'}
+  class:column-display={displayType == 'column'}
+>
+  <slot />
 </div>
 
 <style lang="scss">
-  .page-column {
-    position: relative;
-    border: solid 1px #212121;
-    background-color: #171717;
-
-    &::before {
-      content: attr(title);
-      font-size: medium;
-      font-weight: bold;
-      color: #c9c9c9;
-      position: absolute;
-      top: -16px;
-      left: 10px;
-    }
+  .page-content {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
   }
 
-  .page-content {
-    position: absolute;
-    inset: 20px;
+  .row-display {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-display {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: masonry;
   }
 </style>
