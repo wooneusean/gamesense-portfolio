@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #a7c841;
+  --secondary: #474747;
+}
+
 body,
 html,
 #app {
@@ -34,6 +39,12 @@ html {
 }
 
 ::selection {
-  color: #474747;
-  background: #abcf33;
+  color: var(--secondary);
+  background: var(--primary);
+}
+
+.control-layout {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
 }

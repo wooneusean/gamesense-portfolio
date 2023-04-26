@@ -1,7 +1,7 @@
 <script>
-  import ListItem from '../components/ListItem.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
+  import CheckBox from '../components/CheckBox.svelte';
 </script>
 
 <PageContent>
@@ -9,7 +9,7 @@
     <div>
       <p>
         Hi there! I am <strong>Woon Eusean</strong>, the developer of this
-        <span style="font-family: monospace;">1337</span> site which is kinda like my portfolio/CV.
+        <span style="font-family: monospace; color: var(--primary);">1337</span> site which is kinda like my portfolio/CV.
       </p>
       <br />
       <p>I am based in Malaysia and am currently studying for a Bachelors Degree in Computer Science.</p>
@@ -22,15 +22,15 @@
     <br />
   </PageColumn>
   <PageColumn columnTitle={'Links'}>
-    <ListItem>
+    <CheckBox>
       <a href="https://github.com/wooneusean" target="_blank" rel="noreferrer">My GitHub</a>
-    </ListItem>
-    <ListItem>
+    </CheckBox>
+    <CheckBox>
       <a href="https://www.linkedin.com/in/wooneusean/" target="_blank" rel="noreferrer">My LinkedIn</a>
-    </ListItem>
-    <ListItem>
+    </CheckBox>
+    <CheckBox>
       <a href="https://myanimelist.net/animelist/whoon" target="_blank" rel="noreferrer">My Anime List</a>
-    </ListItem>
+    </CheckBox>
   </PageColumn>
 </PageContent>
 
