@@ -1,5 +1,4 @@
 <script>
-  import CheckBox from '../components/CheckBox.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
   import Slider from '../components/Slider.svelte';
