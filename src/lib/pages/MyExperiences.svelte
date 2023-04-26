@@ -1,5 +1,5 @@
 <script>
-  import CheckBox from '../components/CheckBox.svelte';
+  import Checkbox from '../components/Checkbox.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
 </script>
@@ -8,19 +8,19 @@
   <PageColumn columnTitle={"Touch 'n Go Sdn. Bhd."}>
     <table>
       <tr>
-        <td><CheckBox>Position Title</CheckBox></td>
+        <td><Checkbox>Position Title</Checkbox></td>
         <td>Application Development Intern</td>
       </tr>
       <tr>
-        <td><CheckBox>Position Level</CheckBox></td>
+        <td><Checkbox>Position Level</Checkbox></td>
         <td>Intern</td>
       </tr>
       <tr>
-        <td><CheckBox>Duration</CheckBox></td>
+        <td><Checkbox>Duration</Checkbox></td>
         <td>July 2022 - November 2022</td>
       </tr>
       <tr>
-        <td><CheckBox>Work Description</CheckBox></td>
+        <td><Checkbox>Work Description</Checkbox></td>
         <td>
           Worked in an AGILE team to develop front end and back end application development with Java 8. Used Spring
           Framework, Spring Boot, CUBA Platform, Java Persistence API with Hibernate, and Apache Kafka for real-time
@@ -33,19 +33,19 @@
   <PageColumn columnTitle={'Infinitilab Sdn. Bhd.'}>
     <table>
       <tr>
-        <td><CheckBox>Position Title</CheckBox></td>
+        <td><Checkbox>Position Title</Checkbox></td>
         <td>Software Engineer Intern</td>
       </tr>
       <tr>
-        <td><CheckBox>Position Level</CheckBox></td>
+        <td><Checkbox>Position Level</Checkbox></td>
         <td>Intern</td>
       </tr>
       <tr>
-        <td><CheckBox>Duration</CheckBox></td>
+        <td><Checkbox>Duration</Checkbox></td>
         <td>April 2021 - August 2021</td>
       </tr>
       <tr>
-        <td><CheckBox>Work Description</CheckBox></td>
+        <td><Checkbox>Work Description</Checkbox></td>
         <td>
           Worked in an AGILE team to create visually pleasing and stunning frontend with HTML, CSS and JavaScript with
           Angular and connecting it with the backend made using ASP.Net using ABPZero framework.
