@@ -1,7 +1,7 @@
 <script>
+  import CheckBox from '../components/CheckBox.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
-  import CheckBox from '../components/CheckBox.svelte';
 </script>
 
 <PageContent>
