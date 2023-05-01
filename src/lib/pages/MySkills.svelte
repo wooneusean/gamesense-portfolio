@@ -1,33 +1,44 @@
 <script>
+  import MenuControl from '../components/MenuControl.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
-  import Slider from '../components/Slider.svelte';
 </script>
 
 <PageContent>
   <PageColumn columnTitle={'Software Development'}>
     <div class="control-container">
-      <Slider progress={85}>Java</Slider>
-      <Slider progress={85}>C#</Slider>
-      <Slider progress={70}>C++</Slider>
-      <Slider progress={70}>Visual Basic</Slider>
+      <MenuControl hasSlider currentValue={85}>Java</MenuControl>
+      <MenuControl hasSlider currentValue={85}>C#</MenuControl>
+      <MenuControl hasSlider currentValue={70}>C++</MenuControl>
+      <MenuControl hasSlider currentValue={70}>Visual Basic</MenuControl>
     </div>
   </PageColumn>
   <PageColumn columnTitle="Web Development">
-    <Slider progress={90}>JavaScript</Slider>
-    <Slider progress={90}>HTML</Slider>
-    <Slider progress={90}>CSS</Slider>
-    <Slider progress={85}>React.js</Slider>
-    <Slider progress={85}>Next.js</Slider>
-    <Slider progress={75}>Svelte</Slider>
-    <Slider progress={70}>Angular</Slider>
-    <Slider progress={70}>PHP</Slider>
-    <Slider progress={65}>Vue</Slider>
+    <MenuControl hasSlider currentValue={90}>JavaScript</MenuControl>
+    <MenuControl hasSlider currentValue={90}>HTML</MenuControl>
+    <MenuControl hasSlider currentValue={90}>CSS</MenuControl>
+    <MenuControl hasSlider currentValue={85}>React.js</MenuControl>
+    <MenuControl hasSlider currentValue={85}>Next.js</MenuControl>
+    <MenuControl hasSlider currentValue={75}>Svelte</MenuControl>
+    <MenuControl hasSlider currentValue={70}>Angular</MenuControl>
+    <MenuControl hasSlider currentValue={65}>Vue</MenuControl>
   </PageColumn>
-  <PageColumn columnTitle={'Database'} />
-  <PageColumn columnTitle={'3D Modelling'} />
-  <PageColumn columnTitle={'Mobile App Development'} />
-  <PageColumn columnTitle={'Languages'} />
+  <PageColumn columnTitle="Database">
+    <MenuControl hasSlider currentValue={75}>MySQL</MenuControl>
+    <MenuControl hasSlider currentValue={75}>Firebase</MenuControl>
+    <MenuControl hasSlider currentValue={65}>MongoDB</MenuControl>
+  </PageColumn>
+  <PageColumn columnTitle="3D Modelling">
+    <MenuControl hasSlider currentValue={80}>Blender 3D</MenuControl>
+  </PageColumn>
+  <PageColumn columnTitle={'Mobile App Development'}>
+    <MenuControl hasSlider currentValue={75}>Flutter</MenuControl>
+  </PageColumn>
+  <PageColumn columnTitle={'Languages'}>
+    <MenuControl hasSlider currentValue={100}>English</MenuControl>
+    <MenuControl hasSlider currentValue={75}>Bahasa Malaysia</MenuControl>
+    <MenuControl hasSlider currentValue={20}>Chinese</MenuControl>
+  </PageColumn>
 </PageContent>
 
 <style>

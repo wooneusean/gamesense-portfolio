@@ -1,30 +1,30 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import NodeGardenCanvasAnimation from '../classes/node-garden/node-garden-canvas-animation';
+  import { GlobalVars } from './util/globalVars';
 
   let canvas: HTMLCanvasElement;
-  let nodeGarden: NodeGardenCanvasAnimation;
 
   const resizeWindow = () => {
-    nodeGarden.ctx.canvas.width = window.innerWidth;
-    nodeGarden.ctx.canvas.height = window.innerHeight;
+    GlobalVars.nodeGarden.ctx.canvas.width = window.innerWidth;
+    GlobalVars.nodeGarden.ctx.canvas.height = window.innerHeight;
   };
 
   onMount(() => {
-    nodeGarden = new NodeGardenCanvasAnimation(canvas);
+    GlobalVars.nodeGarden = new NodeGardenCanvasAnimation(canvas);
 
     resizeWindow();
 
-    nodeGarden.start();
+    GlobalVars.nodeGarden.start();
 
     return () => {
-      nodeGarden.stop();
+      GlobalVars.nodeGarden.stop();
     };
   });
 
   const handleMouseMove = (ev: MouseEvent) => {
-    if (nodeGarden != null) {
-      nodeGarden.updateMousePosition(ev);
+    if (GlobalVars.nodeGarden != null) {
+      GlobalVars.nodeGarden.updateMousePosition(ev);
     }
   };
 

@@ -10,7 +10,7 @@
   .page-column {
     padding: 20px;
     border: solid 1px #212121;
-    background-color: #171717;
+    background-color: var(--bg);
     position: relative;
     font-size: small;
     color: #c3c3c3;

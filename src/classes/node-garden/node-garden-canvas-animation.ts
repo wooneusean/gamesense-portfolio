@@ -7,22 +7,27 @@ const modulo = (x: number, N: number) => {
 };
 
 export default class NodeGardenCanvasAnimation extends CanvasAnimation {
-  private nodeCount = 40;
+  nodeCount = 40;
+  maxInteractionDistance = 200;
+  horizontalSpeed = 150;
+  verticalSpeed = 150;
+
   private points: Point[] = [];
-  private horizontalSpeed = 150;
-  private verticalSpeed = 150;
   private mousePosition: Vector2;
-  private maxInteractionDistance: number = 200;
 
   updateMousePosition(ev: MouseEvent) {
     this.mousePosition = { x: ev.x, y: ev.y };
   }
 
-  start(): void {
+  populatePoints() {
     for (let i = this.points.length; i < this.nodeCount; i++) {
       const location: Vector2 = { x: Math.random() * this.canvas.width, y: Math.random() * this.canvas.height };
       this.points.push(new Point(location, 2, { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 }, this.ctx));
     }
+  }
+
+  start(): void {
+    this.populatePoints();
 
     super.start();
   }
@@ -32,6 +37,14 @@ export default class NodeGardenCanvasAnimation extends CanvasAnimation {
   }
 
   update(deltaTime: number): void {
+    if (this.points.length > this.nodeCount) {
+      this.points.length = this.nodeCount;
+    }
+
+    if (this.points.length < this.nodeCount) {
+      this.populatePoints();
+    }
+
     this.points.forEach((point) => {
       point.position({
         x: modulo(point.location.x + this.horizontalSpeed * deltaTime * point.velocity.x, this.canvas.width),

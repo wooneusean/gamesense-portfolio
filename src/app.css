@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #a7c841;
-  --secondary: #474747;
-}
-
 body,
 html,
 #app {
@@ -46,5 +41,6 @@ html {
 .control-layout {
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 1fr 30px;
+  grid-template-columns: 30px 1fr 60px;
+  min-width: 12.5rem;
 }

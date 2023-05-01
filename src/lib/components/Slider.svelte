@@ -1,6 +1,21 @@
 <script lang="ts">
-  export let progress = 0;
+  import { onMount } from 'svelte';
+
+  export let minValue = 0;
+  export let currentValue = 0;
+  export let maxValue = 100;
+  export let useProgress = true;
+  export let onProgressChanged = (progress) => {};
+  export let onValueChanged = (value) => {};
+
+  let progress = 0;
   let isClicking = false;
+
+  $: onProgressChanged(progress);
+  $: onValueChanged(currentValue);
+  $: {
+    progress = ((currentValue - minValue) / (maxValue - minValue)) * 100;
+  }
 
   const updateProgress = (
     e: MouseEvent & {
@@ -10,46 +25,42 @@
     const rect = e.currentTarget.getBoundingClientRect();
     const layerX = e.clientX - rect.x;
 
-    progress = Math.round((layerX / rect.width) * 100);
+    let clickPercentage = Math.round((layerX / rect.width) * 100);
+    currentValue = Math.round((clickPercentage / 100) * (maxValue - minValue) + minValue);
   };
 </script>
 
-<label class="slider-container">
-  <div class="control-layout">
-    <div class="spacer" />
-    <slot />
-    <div class="spacer" />
+<div class="control-layout" style="margin-top: 0.25rem; margin-bottom: 0.5rem">
+  <div class="spacer" />
+  <div
+    class="slider"
+    on:mousedown={updateProgress}
+    on:mousemove={(e) => {
+      if (isClicking) updateProgress(e);
+    }}
+    on:mousedown={() => (isClicking = true)}
+    on:mouseup={() => (isClicking = false)}
+    on:mouseleave={() => (isClicking = false)}
+  >
+    <div class="slider-bar" style={`width: ${progress}%;`} />
+    <div class="slider-label">{useProgress ? `${progress.toFixed(0)}%` : currentValue}</div>
   </div>
-  <div class="control-layout">
-    <div class="spacer" />
-    <div
-      class="slider"
-      on:mousedown={updateProgress}
-      on:mousemove={(e) => {
-        if (isClicking) updateProgress(e);
-      }}
-      on:mousedown={() => (isClicking = true)}
-      on:mouseup={() => (isClicking = false)}
-      on:mouseleave={() => (isClicking = false)}
-    >
-      <div class="slider-bar" style={`width: ${progress}%;`} />
-      <div class="slider-label">{progress}%</div>
-    </div>
-    <div class="spacer" />
-  </div>
-</label>
+  <div class="spacer" />
+</div>
 
 <style lang="scss">
-  .slider-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-  }
-
   .slider {
     position: relative;
     height: 8px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    background: var(--secondary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    }
 
     .slider-bar {
       position: absolute;
@@ -73,6 +84,7 @@
       font-weight: bold;
       user-select: none;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      cursor: pointer;
     }
   }
 </style>

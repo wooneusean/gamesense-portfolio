@@ -5,7 +5,7 @@
   import MyEducation from './pages/MyEducation.svelte';
   import MyExperiences from './pages/MyExperiences.svelte';
   import MySkills from './pages/MySkills.svelte';
-  import MyHobbies from './pages/MyHobbies.svelte';
+  import MenuSettings from './pages/MenuSettings.svelte';
 
   let activeTabKey = '👤';
   let menu: HTMLDivElement;
@@ -63,7 +63,7 @@
     }
   }
 
-  let tabs = { '👤': AboutMe, '🎓': MyEducation, '💼': MyExperiences, '🧰': MySkills, '🏂': MyHobbies };
+  let tabs = { '👤': AboutMe, '🎓': MyEducation, '💼': MyExperiences, '🧰': MySkills, '⚙': MenuSettings };
 
   const handleTabChange = (newTabKey) => {
     activeTabKey = newTabKey;

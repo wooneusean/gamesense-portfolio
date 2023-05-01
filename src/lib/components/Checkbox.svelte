@@ -1,23 +1,23 @@
 <script>
   export let isChecked = true;
+  export let onChecked = (isChecked) => {};
+
+  $: onChecked(isChecked);
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class="control-layout">
-  <button class="check-box" class:active={isChecked} on:click={() => (isChecked = !isChecked)} />
-  <slot />
-  <div class="spacer" />
-</label>
+<button class="check-box" class:active={isChecked} on:click={() => (isChecked = !isChecked)} />
 
 <style lang="scss">
   .check-box {
+    margin-top: 2px;
     position: relative;
     height: 10px;
     width: 10px;
-    background: #474747;
+    background: var(--secondary);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
     &.active {
-      background: #abcf33;
+      background: var(--primary);
     }
     &::after {
       content: '';

@@ -1,5 +1,5 @@
 <script>
-  import CheckBox from '../components/CheckBox.svelte';
+  import MenuControl from '../components/MenuControl.svelte';
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
 </script>
@@ -22,15 +22,15 @@
     <br />
   </PageColumn>
   <PageColumn columnTitle={'Links'}>
-    <CheckBox>
+    <MenuControl hasCheckbox>
       <a href="https://github.com/wooneusean" target="_blank" rel="noreferrer">My GitHub</a>
-    </CheckBox>
-    <CheckBox>
+    </MenuControl>
+    <MenuControl hasCheckbox>
       <a href="https://www.linkedin.com/in/wooneusean/" target="_blank" rel="noreferrer">My LinkedIn</a>
-    </CheckBox>
-    <CheckBox>
+    </MenuControl>
+    <MenuControl hasCheckbox>
       <a href="https://myanimelist.net/animelist/whoon" target="_blank" rel="noreferrer">My Anime List</a>
-    </CheckBox>
+    </MenuControl>
   </PageColumn>
 </PageContent>
 
