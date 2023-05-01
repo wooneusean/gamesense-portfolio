@@ -1,5 +1,9 @@
 <script>
+<<<<<<< HEAD
   import MenuControl from '../components/MenuControl.svelte';
+=======
+  import Checkbox from '../components/Checkbox.svelte';
+>>>>>>> b25a82dba52c04d8c30f4693211afd3b443f4ff7
   import PageColumn from '../components/PageColumn.svelte';
   import PageContent from '../components/PageContent.svelte';
 </script>
@@ -22,6 +26,7 @@
     <br />
   </PageColumn>
   <PageColumn columnTitle={'Links'}>
+<<<<<<< HEAD
     <MenuControl hasCheckbox>
       <a href="https://github.com/wooneusean" target="_blank" rel="noreferrer">My GitHub</a>
     </MenuControl>
@@ -31,6 +36,17 @@
     <MenuControl hasCheckbox>
       <a href="https://myanimelist.net/animelist/whoon" target="_blank" rel="noreferrer">My Anime List</a>
     </MenuControl>
+=======
+    <Checkbox>
+      <a href="https://github.com/wooneusean" target="_blank" rel="noreferrer">My GitHub</a>
+    </Checkbox>
+    <Checkbox>
+      <a href="https://www.linkedin.com/in/wooneusean/" target="_blank" rel="noreferrer">My LinkedIn</a>
+    </Checkbox>
+    <Checkbox>
+      <a href="https://myanimelist.net/animelist/whoon" target="_blank" rel="noreferrer">My Anime List</a>
+    </Checkbox>
+>>>>>>> b25a82dba52c04d8c30f4693211afd3b443f4ff7
   </PageColumn>
 </PageContent>
 
